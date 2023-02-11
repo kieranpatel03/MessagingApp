@@ -6,7 +6,6 @@
 <script>
 import HeaderApp from "./components/header.vue"
 
-
 export default {
     name: 'MainApp',
     components: {

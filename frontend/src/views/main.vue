@@ -35,7 +35,7 @@ export default {
     }
   },
   methods: {
-    get_data(){
+    get_data(){ //gets the list of conversations that the user has had. 
       if (this.$cookies.get('token')){
         fetch(`http://127.0.0.1:8000/select`, {
           method: 'GET',

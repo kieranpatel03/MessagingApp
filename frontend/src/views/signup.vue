@@ -40,6 +40,7 @@ export default {
     },
     methods: {
         create_user(){
+            //password and confirm password values must match. 
             if (this.confirm_password !== this.password){
                 this.password_not_matching = true
             } else {
@@ -57,7 +58,7 @@ export default {
                                 this.$router.push('/').then(() => { this.$router.go() })
                             }
                         )
-                })
+                }) //credentials are sent to backend which creates the user and sends back a token which will be used to authorize the user in future requests.
             }
         }
     }

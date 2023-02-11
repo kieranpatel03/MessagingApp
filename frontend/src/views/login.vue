@@ -33,7 +33,7 @@ export default {
         }
     },
     methods: {
-        form_submit() {
+        form_submit() { //checks if the user exists and if so, it will log them in. 
             const body_msg = JSON.stringify({username: this.username, password: this.password})
             fetch('http://127.0.0.1:8000/retrieve', {
                 method: "POST",

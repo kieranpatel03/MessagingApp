@@ -30,21 +30,21 @@ export default {
         }
     },
     methods: {
-        update_msgs(){
+        update_msgs(){ //gets the messages between the two users from the backend.
             fetch(`http://127.0.0.1:8000?user_id=${this.$route.params.id}`, {
-        method: 'GET',
-        headers: {
-          "Authorization": this.$cookies.get('token')
-      }}).then(response => response.json()).then(this.unwrap_data)
-        },
+                method: 'GET',
+                headers: {
+                    "Authorization": this.$cookies.get('token')
+                }}).then(response => response.json()).then(this.unwrap_data)
+        }, 
         unwrap_data(data){
             this.current_messages = data['message_list'];
             this.message_to_name = data['message_to_name'];
             this.message_to_id = data['message_to_id']
             this.message_from_id = data['message_from_id']
-        },
+        }, //adds a message to the conversation. 
         add_msg(){
-            const body_msg = JSON.stringify({user_to: this.message_to_id, user_sent: this.message_from_id, message : this.message_typing})  
+            const body_msg = JSON.stringify({user_to: this.message_to_id, message : this.message_typing})  
             fetch(`http://127.0.0.1:8000/insert`, {
                 method: "POST",
                 headers: {
@@ -52,10 +52,8 @@ export default {
                     "Authorization": this.$cookies.get('token'),
                 }, 
                 body: body_msg,
-            }).then(this.message_typing = '').then(this.update_msgs).catch(function(error) {
-                console.log('Request failed', error);
-            });
-        }
+            }).then(this.message_typing = '').then(this.update_msgs)
+        } // 
     },
     created() {
         this.update_msgs()

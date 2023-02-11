@@ -35,10 +35,9 @@ export default {
     },
     methods: {
         form_submit(){
-            const body_msg = JSON.stringify({id: this.user_id, message: this.message})
-            fetch('http://127.0.0.1:8000/start', {
+            const body_msg = JSON.stringify({user_to: this.user_id, message: this.message})
+            fetch('http://127.0.0.1:8000/insert', {
                 method: "POST",
-                credentials: 'include',
                 headers: {
                     "Content-type": "application/json",
                     "Authorization": this.$cookies.get('token'),
